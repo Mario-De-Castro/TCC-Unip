@@ -1,6 +1,11 @@
 version: '3.1'
 
 services:
+  db:
+    container_name: tcc_database
+    build: './DB/'
+    ports:
+      - "5432:5432"
   api:
     container_name: tcc_backend
     build: './TCC/'
