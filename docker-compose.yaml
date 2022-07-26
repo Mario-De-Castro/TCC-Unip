@@ -1,13 +1,39 @@
 version: '3.1'
 
 services:
-  db:
-    container_name: tcc_database
-    build: './DB/'
+  dbpg:
+    container_name: dbpg
+    image: mdillon/postgis
+    volumes:
+      - data:/var/lib/postgresql
+    environment:
+      - POSTGRES_DB=teste_db
+      - POSTGRES_USER=postgres   
+      - POSTGRES_HOST=0.0.0.0
+      - POSTGRES_PASSWORD=postgres
+
+    restart: always 
     ports:
       - "5432:5432"
-  api:
-    container_name: tcc_backend
-    build: './TCC/'
+  
+  dj:
+    container_name: dj
+    build: django
+    command: python manage.py runserver 0.0.0.0:80
+    volumes:
+      - ./Django:/code
     ports:
-      - "8000:8000"
+      - "80:80"
+    depends_on:
+      - dbpg
+    environment:
+      - DJANGO_SETTINGS=dev
+
+  ng:
+    container_name: ng
+    build: Angular
+    ports:
+      - "8080:80"
+
+volumes:
+  data:
