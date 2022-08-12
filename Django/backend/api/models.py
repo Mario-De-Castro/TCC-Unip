@@ -26,4 +26,4 @@ class Fires(models.Model):
     state = models.CharField(verbose_name='Estado', max_length=255)
     country = models.CharField(verbose_name='Pais', max_length=255)
     biome = models.CharField(verbose_name='Bioma', max_length=255, choices=BIOMES, blank=False, null=False, default='FOREST')
-    weather = models.ForeignKey(Weather, on_delete=models.CASCADE, verbose_name='Condições Climaticas')
+    weather = models.ForeignKey(Weather, on_delete=models.CASCADE, verbose_name='Condições Climaticas', null=True)

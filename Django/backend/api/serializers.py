@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from api.models import Fires
+from api.models import Fires, Weather
 from rest_framework import serializers
 
 
@@ -14,6 +14,11 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url', 'name']
 
 class FiresSerializer(serializers.ModelSerializer):
+
+    def create(self, validated_data):
+        post = Fires.objects.create(**validated_data)  # saving post object
+        return post
+
     class Meta:
         model = Fires
-        fields = '__all__'
+        fields = ('latitude', 'longitude', 'biome')
