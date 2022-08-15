@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row py-3">
+        <div class="col-6">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <section class="mx-auto my-5" >
+        <div class="row pb-3">
+            <div class="col-12">
+                <div class="card">
+                    <p class="h3 text-center py-3">Informe os dados de latitude e longitutde</p>
+                    <form class="py-3 px-5">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="latitude">Latitude</label>
+                                    <input type="text" class="form-control" id="latitude" placeholder="Exemplo: -45.12">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="longitutde">Longitude</label>
+                                    <input type="text" class="form-control" id="longitutde" placeholder="Exemplo: -23.11">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-6">
+                                <label for="Bioma">Bioma</label>
+                                <select class="form-control">
+                                    <option>Cidade</option>
+                                    <option>Floresta</option>
+                                </select>
+                            </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary mt-2">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card map-card">
+          <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
+            <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+              frameborder="0" style="border:0" allowfullscreen></iframe>
+          </div>
+        </div>
+
+    
+      </section>
+</div>
