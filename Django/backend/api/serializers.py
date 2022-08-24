@@ -21,4 +21,5 @@ class FiresSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Fires
-        fields = ('latitude', 'longitude', 'biome')
+        fields = ('latitude', 'longitude', 'biome', 'country', 'state', 'city', 'weather')
+        read_only_fields = ('country', 'state', 'city', 'weather')

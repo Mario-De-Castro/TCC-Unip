@@ -63,5 +63,19 @@
         </div>
 
     
-      </section>
+    </section>
+    <div class="row">
+      <div class="col">
+        <p class="h1">Neymar</p>
+        <ul>
+          <li *ngFor="let fire of fires$ | async">
+            <ul>
+              <li>Latitude: {{ fire.latitude }}</li>
+              <li>longitude: {{ fire.longitude }}</li>
+              <li>Bioma: {{ fire.biome }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
 </div>

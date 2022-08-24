@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { ApiService } from '../api.service';
+import { Fires } from '../fires';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  fires$: Observable<Fires[]>;
+  
+  constructor(private apiService: ApiService) { }
 
-  constructor() { }
+  ngOnInit() {
+    this.getFires();
+  }
 
-  ngOnInit(): void {
+  public getFires() {
+    this.fires$ = this.apiService.getFires();
   }
 
 }

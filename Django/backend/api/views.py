@@ -28,7 +28,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class FiresViewSet(viewsets.ModelViewSet):
     """Metodo responsavel por criar a queimada e consultar a previsão do tempo"""
-    queryset = Fires.objects.none()
+    queryset = Fires.objects.all()
     serializer_class = FiresSerializer
 
     def perform_create(self, serializer):
