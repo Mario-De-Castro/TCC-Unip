@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from api.models import Fires, Weather
+from api.models import Fires, DataFire
 from rest_framework import serializers
 
 
@@ -23,3 +23,12 @@ class FiresSerializer(serializers.ModelSerializer):
         model = Fires
         fields = ('latitude', 'longitude', 'biome', 'country', 'state', 'city', 'weather')
         read_only_fields = ('country', 'state', 'city', 'weather')
+
+class FileUploadSerializer(serializers.Serializer):
+    file = serializers.FileField()
+
+class DataFireSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DataFire
+        fields = '__all__'
