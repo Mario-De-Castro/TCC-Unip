@@ -1,0 +1,194 @@
+<div class="container">
+  <div class="row py-3">
+    <div class="col-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="mx-auto my-5">
+    <div class="row pb-3">
+      <div class="col-12">
+        <div class="card py-2 px-2">
+          <ng-container *ngIf="step == 1; then passo1"></ng-container>
+          <ng-container *ngIf="step == 2; then passo2"></ng-container>
+          <ng-container *ngIf="step == 3; then passo3"></ng-container>
+          <ng-container *ngIf="step == 4; then passo4"></ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="card map-card">
+      <div id="map"></div>
+    </div>
+  </section>
+  <div class="row">
+    <div class="col">
+      <p class="h1">Neymar</p>
+      <ul>
+        <li *ngFor="let fire of allFires">
+          <ul>
+            <li>Latitude: {{ fire.latitude }}</li>
+            <li>longitude: {{ fire.longitude }}</li>
+            <li>Bioma: {{ fire.biome }}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<ng-template #passo1>
+  <p class="h3 text-center py-3">Informe os dados de latitude e longitutde para centralizar o mapa</p>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input
+          type="text"
+          class="form-control"
+          id="latitude"
+          placeholder="Exemplo: -45.12"
+          [(ngModel)]="latitude"
+          (input)="centralize()"
+        />
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="longitutde">Longitude</label>
+        <input
+          type="text"
+          class="form-control"
+          id="longitutde"
+          placeholder="Exemplo: -23.11"
+          [(ngModel)]="longitude"
+          (input)="centralize()"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row pt-1">
+    <div class="col-12 d-flex justify-content-center">
+      <button (click)="nextStep()" class="btn btn-primary mt-2">Próximo passo</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #passo2>
+  <p class="h3 text-center py-3">Escolha o raio em que deseja procurar</p>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center flex-column">
+      <input (input)="updateCircle()" [(ngModel)]="raio" step="1" min="0" max="50" type="range" class="form-control">
+      <label class="pt-2">Raio escolhido: {{ raio }}</label>
+    </div>
+  </div>
+  <div class="row pt-3">
+    <div class="col-12 d-flex justify-content-center">
+      <button (click)="nextStep()" class="btn btn-primary mt-2">Próximo passo</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #passo3>
+  <p class="h3 text-center py-3">Informe os dados de latitude e longitutde</p>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input
+          type="text"
+          class="form-control"
+          id="latitude"
+          placeholder="Exemplo: -45.12"
+          [(ngModel)]="latitude"
+        />
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="longitutde">Longitude</label>
+        <input
+          type="text"
+          class="form-control"
+          id="longitutde"
+          placeholder="Exemplo: -23.11"
+          [(ngModel)]="longitude"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row pt-3">
+    <div class="col-6">
+      <label for="Bioma">Bioma</label>
+      <select class="form-control">
+        <option>Cidade</option>
+        <option>Floresta</option>
+      </select>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+      <button (click)="getFires()" class="btn btn-primary mt-2">Enviar</button>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #passo4>
+  <p class="h3 text-center py-3">Informe os dados de latitude e longitutde</p>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input
+          type="text"
+          class="form-control"
+          id="latitude"
+          placeholder="Exemplo: -45.12"
+          [(ngModel)]="latitude"
+        />
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="longitutde">Longitude</label>
+        <input
+          type="text"
+          class="form-control"
+          id="longitutde"
+          placeholder="Exemplo: -23.11"
+          [(ngModel)]="longitude"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row pt-3">
+    <div class="col-6">
+      <label for="Bioma">Bioma</label>
+      <select class="form-control">
+        <option>Cidade</option>
+        <option>Floresta</option>
+      </select>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+      <button (click)="getFires()" class="btn btn-primary mt-2">Enviar</button>
+    </div>
+  </div>
+</ng-template>

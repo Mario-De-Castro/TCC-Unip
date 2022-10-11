@@ -66,14 +66,15 @@ class DataFireViewSet(viewsets.ModelViewSet):
     queryset = DataFire.objects.all()
 
     def get_queryset(self):
-        if self.request.GET.get('lat') and self.request.GET.get('lng'):
+        if self.request.GET.get('lat') and self.request.GET.get('lng') and self.request.GET.get('ray'):
             user_lat = self.request.GET.get('lat')
             user_lng = self.request.GET.get('lng')
-            raio = 1000 * 10
+            user_ray = self.request.GET.get('ray')
+            raio = 1000 * int(user_ray)
             #cursor = connection.cursor()
             #cursor.execute(f'''SELECT * FROM public.api_datafire LIMIT 5''')
             #print(cursor.fetchone())
-            queryset = DataFire.objects.raw(f"SELECT * FROM api_datafire AS api WHERE {raio} > (((acos(sin(({user_lat}*{pi}/180)) * sin((api.latitude*{pi}/180))+cos(({user_lat}*{pi}/180)) * cos((api.latitude*{pi}/180)) * cos((({user_lng} - api.longitude)*{pi}/180))))*180/{pi})*60*1.1515*1.609344)*1000 LIMIT 10")
+            queryset = DataFire.objects.raw(f"SELECT * FROM api_datafire AS api WHERE {raio} > (((acos(sin(({user_lat}*{pi}/180)) * sin((api.latitude*{pi}/180))+cos(({user_lat}*{pi}/180)) * cos((api.latitude*{pi}/180)) * cos((({user_lng} - api.longitude)*{pi}/180))))*180/{pi})*60*1.1515*1.609344)*1000 ORDER BY id")
         else:
             print('teste')
             queryset = DataFire.objects.none()

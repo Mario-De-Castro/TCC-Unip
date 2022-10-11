@@ -18,6 +18,9 @@
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
+    "types": [
+      "googlemaps"
+    ],
     "strictPropertyInitialization": false,
     "lib": [
       "es2020",
