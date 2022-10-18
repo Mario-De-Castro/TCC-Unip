@@ -294,3 +294,7 @@ cython_debug/
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,visualstudiocode,git
+
+/django/*
+django/*
+django/
