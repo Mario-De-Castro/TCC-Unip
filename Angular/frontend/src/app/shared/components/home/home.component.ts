@@ -1,4 +1,5 @@
-import { ApiService } from './../../../api.service';
+import { ApiService } from './../../services/api.service';
+
 import { Fires } from './../../interfaces/fires';
 import { LocalData } from './../../interfaces/local-data';
 
