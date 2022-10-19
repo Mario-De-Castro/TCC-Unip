@@ -1,4 +1,4 @@
-import { LocalData } from './shared/interfaces/local-data';
+import { LocalData } from './../interfaces/local-data';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
