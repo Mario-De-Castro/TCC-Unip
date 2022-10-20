@@ -8,7 +8,7 @@ from datetime import datetime
 from math import pi
 
 class DataFireViewSet(viewsets.ModelViewSet):
-    serializer_class = FileUploadSerializer
+    serializer_class = DataFireSerializer
     queryset = DataFire.objects.none()
 
     def get_queryset(self):

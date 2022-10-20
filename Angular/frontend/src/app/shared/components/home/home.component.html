@@ -33,6 +33,7 @@
           <ng-container *ngIf="step == 1; then passo1"></ng-container>
           <ng-container *ngIf="step == 2; then passo2"></ng-container>
           <ng-container *ngIf="step == 3; then passo3"></ng-container>
+          <ng-container *ngIf="step == 4; then passo4"></ng-container>
         </div>
       </div>
     </div>
@@ -43,7 +44,9 @@
 </div>
 
 <ng-template #passo1>
-  <p class="h3 text-center py-3">Informe os dados de latitude e longitutde para centralizar o mapa</p>
+  <p class="h3 text-center py-3">
+    Informe os dados de latitude e longitutde para centralizar o mapa
+  </p>
   <div class="row">
     <div class="col-6">
       <div class="form-group">
@@ -72,9 +75,11 @@
       </div>
     </div>
   </div>
-  <div class="row pt-1">
-    <div class="col-12 d-flex justify-content-center">
-      <button (click)="nextStep()" class="btn btn-primary mt-2">Próximo passo</button>
+  <div class="row pt-3 justify-content-center">
+    <div class="col-8 d-flex justify-content-evenly">
+      <button (click)="nextStep()" class="btn btn-primary mt-2">
+        Próximo passo
+      </button>
     </div>
   </div>
 </ng-template>
@@ -83,34 +88,78 @@
   <p class="h3 text-center py-3">Escolha o raio em que deseja procurar</p>
   <div class="row">
     <div class="col-12 d-flex justify-content-center flex-column">
-      <input (input)="updateCircle()" [(ngModel)]="raio" step="1" min="0" max="50" type="range" class="form-control">
+      <input
+        (input)="updateCircle()"
+        [(ngModel)]="raio"
+        step="1"
+        min="0"
+        max="50"
+        type="range"
+        class="form-control"
+      />
       <label class="pt-2">Raio escolhido: {{ raio }}</label>
     </div>
   </div>
-  <div class="row pt-3">
-    <div class="col-12 d-flex justify-content-center">
-      <button (click)="nextStep()" class="btn btn-primary mt-2">Próximo passo</button>
+  <div class="row pt-3 justify-content-center">
+    <div class="col-8 d-flex justify-content-evenly">
+      <button (click)="previousStep()" class="btn btn-primary mt-2">
+        Voltar
+      </button>
+      <button (click)="nextStep()" class="btn btn-primary mt-2">
+        Próximo passo
+      </button>
     </div>
   </div>
 </ng-template>
 
 <ng-template #passo3>
+  <p class="h3 text-center py-3">Escolha o ano em que deseja procurar</p>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+      <select name="years" class="form-control w-25" [(ngModel)]="currYear" (change)="teste()">
+        <ng-container *ngFor="let year of years">
+          <option [value]="year">{{ year }}</option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <div class="col-8 d-flex justify-content-evenly">
+      <button (click)="previousStep()" class="btn btn-primary mt-2">
+        Voltar
+      </button>
+      <button (click)="nextStep()" class="btn btn-primary mt-2">
+        Próximo passo
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #passo4>
   <p class="h3 text-center py-3">Informe os dados de latitude e longitutde</p>
   <div class="row">
     <div class="col-6 d-flex justify-content-center">
       <div class="form-group">
-        <label for="latitude">Latitude: {{latitude}}</label>
+        <label for="latitude">Latitude: {{ latitude }}</label>
       </div>
     </div>
     <div class="col-6">
       <div class="form-group d-flex justify-content-center">
-        <label for="longitutde">Longitude: {{longitude}}</label>
+        <label for="longitutde">Longitude: {{ longitude }}</label>
       </div>
     </div>
   </div>
-  <div class="row pt-3">
-    <div class="col-12 d-flex justify-content-center">
-      <button (click)="getFires()" class="btn btn-primary mt-2">Buscar queimadas</button>
+  <div class="row pt-3 justify-content-center">
+    <div class="col-8 d-flex justify-content-evenly">
+      <button (click)="previousStep()" class="btn btn-danger mt-2">
+        Voltar
+      </button>
+      <button (click)="restartSystem()" class="btn btn-primary mt-2">
+        Reiniciar
+      </button>
+      <button (click)="getFires()" class="btn btn-success mt-2">
+        Buscar queimadas
+      </button>
     </div>
   </div>
 </ng-template>

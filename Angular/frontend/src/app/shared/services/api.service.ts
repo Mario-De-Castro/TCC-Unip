@@ -12,7 +12,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  public getFires(lat:number, lng:number, raio:number): Observable<LocalData> {
-    return this.http.get<LocalData>(`${this.API_URL}/datafire/?lat=${lat}&lng=${lng}&ray=${raio}`);
+  public getFires(lat:number, lng:number, raio:number, year:number): Observable<LocalData> {
+    return this.http.get<LocalData>(`${this.API_URL}/datafire/?lat=${lat}&lng=${lng}&ray=${raio}&year=${year}`);
   }
 }
