@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light border shadow">
   <a class="navbar-brand pl-2" href="/">
-    <img src="assets/logo.svg" width="80" height="80" alt="Logo">
+    <img src="assets/logo.svg" width="80" height="80" alt="Logo" />
     <strong>Sistema de Identificação de Queimadas</strong>
   </a>
 </nav>
@@ -38,12 +38,19 @@
       <div class="col-12">
         <div class="card shadow py-2 px-2">
           <div class="container">
+            <img
+              src="assets/interrogacao.svg"
+              class="tooltip-img"
+              [mtxTooltip]="tooltipTpl"
+              [mtxTooltipPosition]="'above'"
+              [mtxTooltipClass]="'tooltip-card'"
+            />
+
             <ng-container *ngIf="step == 1; then passo1"></ng-container>
             <ng-container *ngIf="step == 2; then passo2"></ng-container>
             <ng-container *ngIf="step == 3; then passo3"></ng-container>
             <ng-container *ngIf="step == 4; then passo4"></ng-container>
           </div>
-
         </div>
       </div>
     </div>
@@ -53,14 +60,25 @@
   </section>
 </div>
 
+<ng-template #tooltipTpl>
+  <div class="tooltip-body">
+    <ol>
+      <li>No computador, abra o Google Maps.</li>
+      <li>Clique com o botão direito do mouse no lugar ou na área no mapa.</li>
+      <li>Uma janela pop-up será aberta. A latitude e a longitude vão aparecer no formato decimal na parte superior.</li>
+      <li>Para copiar as coordenadas automaticamente, clique na latitude e longitude.</li>
+    </ol>
+  </div>
+</ng-template>
+
 <ng-template #passo1>
-  <p class="h2 text-center py-3">
-    Informe os dados de latitude e longitude
-  </p>
+  <p class="h2 text-center py-3">Informe os dados de latitude e longitude</p>
   <div class="row">
     <div class="col-4 offset-1">
       <div class="form-group">
-        <label for="latitude" style="color: #39B54A"><strong>Latitude:</strong></label>
+        <label for="latitude" style="color: #39b54a"
+          ><strong>Latitude:</strong></label
+        >
         <input
           type="text"
           class="form-control"
@@ -73,7 +91,9 @@
     </div>
     <div class="col-4 offset-2">
       <div class="form-group">
-        <label for="longitutde" style="color: #39B54A"><strong>Longitude:</strong></label>
+        <label for="longitutde" style="color: #39b54a"
+          ><strong>Longitude:</strong></label
+        >
         <input
           type="text"
           class="form-control"
@@ -126,11 +146,19 @@
   <p class="h3 text-center py-3">Selecione o ano</p>
   <div class="row">
     <div class="col-12 d-flex justify-content-center">
-      <select name="years" class="form-control w-25" [(ngModel)]="currYear" (change)="teste()">
-        <ng-container *ngFor="let year of years">
-          <option [value]="year">{{ year }}</option>
-        </ng-container>
-      </select>
+      <div class="form-group w-50">
+        <label style="color: #39b54a">Ano:</label>
+        <select
+          name="years"
+          class="form-control"
+          [(ngModel)]="currYear"
+          (change)="teste()"
+        >
+          <ng-container *ngFor="let year of years">
+            <option [value]="year">{{ year }}</option>
+          </ng-container>
+        </select>
+      </div>
     </div>
   </div>
   <div class="row pt-3 justify-content-center">
@@ -150,22 +178,37 @@
   <div class="row">
     <div class="col-3 d-flex justify-content-center">
       <div class="form-group">
-        <label for="latitude"><strong class="green-text">Latitude:</strong> {{ latitude }}</label>
+        <label for="latitude"
+          ><strong class="green-text">Latitude:</strong></label
+        >
+        <input type="text" class="form-control" [value]="latitude" disabled />
       </div>
     </div>
     <div class="col-3">
-      <div class="form-group d-flex justify-content-center">
-        <label for="longitutde"><strong class="green-text">Longitude:</strong> {{ longitude }}</label>
+      <div class="form-group">
+        <label for="longitutde"
+          ><strong class="green-text">Longitude:</strong></label
+        >
+        <input type="text" class="form-control" [value]="longitude" disabled />
       </div>
     </div>
     <div class="col-3">
-      <div class="form-group d-flex justify-content-center">
-        <label for="longitutde"><strong class="green-text">Raio:</strong> {{ raio }}km</label>
+      <div class="form-group">
+        <label for="longitutde"
+          ><strong class="green-text">Raio:</strong></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [value]="raio + 'km'"
+          disabled
+        />
       </div>
     </div>
     <div class="col-3">
-      <div class="form-group d-flex justify-content-center">
-        <label for="longitutde"><strong class="green-text">Ano:</strong> {{currYear}}</label>
+      <div class="form-group">
+        <label for="longitutde"><strong class="green-text">Ano:</strong></label>
+        <input type="text" class="form-control" [value]="currYear" disabled />
       </div>
     </div>
   </div>

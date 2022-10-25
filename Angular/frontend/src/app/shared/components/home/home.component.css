@@ -2,7 +2,7 @@
 
 body {
   background-color: #f5f7fa;
-  
+
 }
 
 .green-text {
@@ -108,4 +108,25 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 #map {
   height: 700px;
   width: 100%;
+}
+
+.tooltip-img {
+  max-width: 50px;
+  max-height: 50px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.tooltip-body {
+  padding: 10px;
+  font-size: 12px;
+  background-color: #39B54A;
+  border-radius: 10px;
+}
+
+.tooltip-body ol {
+  padding: 0;
+  padding-left: 10px;
+  margin: 0;
 }
