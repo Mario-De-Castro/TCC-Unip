@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit {
   public raio: number;
   public years: number[];
   public currYear: number;
+  public hasNext: boolean;
+  public url: string;
 
   constructor(private apiService: ApiService) {}
 
@@ -48,6 +50,8 @@ export class HomeComponent implements OnInit {
     this.step = 1;
     this.raio = 25;
     this.currYear = 2021;
+    this.hasNext = true;
+    this.url = "";
 
     this.heatmap = new google.maps.visualization.HeatmapLayer({
       map: this.map,
@@ -107,11 +111,15 @@ export class HomeComponent implements OnInit {
       alert('Você está no primeiro passo.');
       return;
     }
+    this.url = "";
+    this.hasNext = true;
     this.step -= 1;
     this.verifyCurrentStep();
   }
 
   restartSystem() {
+    this.url = "";
+    this.hasNext = true;
     this.step = 1;
     this.latitude = -23.533773;
     this.longitude = -46.62529;
@@ -146,8 +154,13 @@ export class HomeComponent implements OnInit {
 
   getFires() {
     this.apiService
-      .getFires(this.latitude, this.longitude, this.raio, this.currYear)
+      .getFires(this.latitude, this.longitude, this.raio, this.currYear, this.url)
       .subscribe((json) => {
+        if(json.next) {
+          this.url = json.next;
+        } else {
+          this.hasNext = false;
+        }
         this.allFires = json.results;
         json.results.forEach((elem) => {
           this.heatMapData.push(

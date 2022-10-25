@@ -65,8 +65,14 @@
     <ol>
       <li>No computador, abra o Google Maps.</li>
       <li>Clique com o botão direito do mouse no lugar ou na área no mapa.</li>
-      <li>Uma janela pop-up será aberta. A latitude e a longitude vão aparecer no formato decimal na parte superior.</li>
-      <li>Para copiar as coordenadas automaticamente, clique na latitude e longitude.</li>
+      <li>
+        Uma janela pop-up será aberta. A latitude e a longitude vão aparecer no
+        formato decimal na parte superior.
+      </li>
+      <li>
+        Para copiar as coordenadas automaticamente, clique na latitude e
+        longitude.
+      </li>
     </ol>
   </div>
 </ng-template>
@@ -220,8 +226,8 @@
       <button (click)="restartSystem()" class="btn btn-warning mt-2">
         Reiniciar
       </button>
-      <button (click)="getFires()" class="btn btn-green mt-2">
-        Buscar queimadas
+      <button (click)="getFires()" class="btn btn-green mt-2" *ngIf="hasNext">
+        Buscar Queimadas
       </button>
     </div>
   </div>
