@@ -11,6 +11,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-home',
@@ -39,6 +41,13 @@ export class HomeComponent implements OnInit {
   public currYear: number;
   public hasNext: boolean;
   public url: string;
+  public isLoading: boolean;
+  public spinnerOptions:{
+    color: ThemePalette;
+    mode: ProgressSpinnerMode;
+    value: number;
+  };
+
 
   constructor(private apiService: ApiService) {}
 
@@ -51,7 +60,14 @@ export class HomeComponent implements OnInit {
     this.raio = 25;
     this.currYear = 2021;
     this.hasNext = true;
-    this.url = "";
+    this.url = '';
+    this.isLoading = false;
+
+    this.spinnerOptions = {
+      color: 'primary',
+      mode: 'indeterminate',
+      value: 50
+    }
 
     this.heatmap = new google.maps.visualization.HeatmapLayer({
       map: this.map,
@@ -72,7 +88,7 @@ export class HomeComponent implements OnInit {
   }
 
   teste() {
-    console.log(this.currYear)
+    console.log(this.currYear);
   }
 
   initMap(): void {
@@ -111,14 +127,14 @@ export class HomeComponent implements OnInit {
       alert('Você está no primeiro passo.');
       return;
     }
-    this.url = "";
+    this.url = '';
     this.hasNext = true;
     this.step -= 1;
     this.verifyCurrentStep();
   }
 
   restartSystem() {
-    this.url = "";
+    this.url = '';
     this.hasNext = true;
     this.step = 1;
     this.latitude = -23.533773;
@@ -153,10 +169,17 @@ export class HomeComponent implements OnInit {
   }
 
   getFires() {
+    this.isLoading = true;
     this.apiService
-      .getFires(this.latitude, this.longitude, this.raio, this.currYear, this.url)
+      .getFires(
+        this.latitude,
+        this.longitude,
+        this.raio,
+        this.currYear,
+        this.url
+      )
       .subscribe((json) => {
-        if(json.next) {
+        if (json.next) {
           this.url = json.next;
         } else {
           this.hasNext = false;
@@ -169,6 +192,7 @@ export class HomeComponent implements OnInit {
         });
         this.heatmap.setData(this.heatMapData);
         this.updateHeatmap();
+        this.isLoading = false;
       });
   }
 }

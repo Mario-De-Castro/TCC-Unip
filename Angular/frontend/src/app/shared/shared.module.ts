@@ -8,6 +8,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -17,7 +18,8 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     GoogleMapsModule,
     MatTooltipModule,
-    MtxTooltipModule
+    MtxTooltipModule,
+    MatProgressSpinnerModule,
   ],
   exports: [HomeComponent],
   providers: [],

@@ -232,3 +232,12 @@
     </div>
   </div>
 </ng-template>
+
+<div *ngIf="isLoading" class="loadingFather">
+  <mat-progress-spinner
+  class="example-margin"
+  [color]="spinnerOptions.color"
+  [mode]="spinnerOptions.mode"
+  [value]="spinnerOptions.value">
+  </mat-progress-spinner>
+</div>
